@@ -1,6 +1,8 @@
-# ToDoList Collaborative
+# ToDoList Collaborative - Projet Vide Prêt pour le Développement
 
-Une application de gestion de tâches collaboratives développée avec Spring Boot, Angular et MySQL, le tout containerisé avec Docker.
+## 🎯 Description
+
+Ce projet est une application de gestion de tâches collaboratives développée avec Spring Boot, Angular et MySQL, le tout containerisé avec Docker. Le projet est configuré comme un template vide prêt pour le développement en équipe.
 
 ## 🚀 Démarrage rapide
 
@@ -49,116 +51,121 @@ docker exec -it todolist-mysql mysql -u todolist_user -p todolist_db
 
 ```
 todolist-collaborative/
-├── backend/                 # API Spring Boot
-│   ├── src/main/java/      # Code source Java
-│   └── pom.xml             # Configuration Maven
-├── frontend/               # Application Angular
-│   ├── src/app/            # Code source Angular
-│   └── package.json        # Configuration npm
-├── database/               # Scripts de base de données
-│   └── schema/             # Schéma SQL
-├── docker/                 # Configuration Docker
-│   ├── backend/            # Dockerfile backend
-│   ├── frontend/           # Dockerfile frontend
-│   └── mysql/              # Dockerfile MySQL
-└── docker-compose.yml      # Orchestration Docker
+├── backend/                 # Spring Boot Backend
+│   ├── src/main/java/com/todolist/
+│   │   ├── TodolistCollaborativeApplication.java
+│   │   ├── controller/
+│   │   │   └── HealthController.java
+│   │   └── config/
+│   │       └── SecurityConfig.java
+│   ├── src/main/resources/
+│   │   ├── application.properties
+│   │   ├── application-dev.properties
+│   │   └── application-prod.properties
+│   └── pom.xml
+├── frontend/                # Angular Frontend
+│   ├── src/
+│   │   ├── app/
+│   │   │   ├── app.component.ts
+│   │   │   └── app.module.ts
+│   │   ├── assets/
+│   │   ├── styles.css
+│   │   ├── index.html
+│   │   └── main.ts
+│   ├── angular.json
+│   ├── package.json
+│   ├── tsconfig.json
+│   ├── tsconfig.app.json
+│   └── tsconfig.spec.json
+├── database/                # Scripts de base de données
+│   └── schema/
+│       └── init.sql
+├── docker/                  # Configuration Docker
+│   ├── mysql/
+│   │   └── Dockerfile
+│   ├── backend/
+│   │   └── Dockerfile
+│   └── frontend/
+│       ├── Dockerfile
+│       └── nginx.conf
+├── docker-compose.yml       # Orchestration des services
+├── README.md
+└── .gitignore
 ```
 
-## 🛠️ Développement
+## 🛠️ Technologies utilisées
 
-### Backend (Spring Boot)
-- **Port** : 8080
-- **Base de données** : MySQL (todolist_db)
-- **API** : REST avec Spring Boot 2.7.18
-- **Sécurité** : Spring Security + JWT
-
-### Frontend (Angular)
-- **Port** : 4200
-- **Framework** : Angular 16
-- **Build** : Nginx pour la production
-
-### Base de données (MySQL)
-- **Port** : 3306
-- **Base** : todolist_db
-- **Utilisateur** : todolist_user
-- **Mot de passe** : todolist_password
+- **Backend**: Spring Boot 2.7.18, Java 11, Spring Security, Spring Data JPA, MySQL Connector
+- **Frontend**: Angular 16, TypeScript, CSS3
+- **Base de données**: MySQL 8.0
+- **Containerisation**: Docker, Docker Compose
+- **Serveur web**: Nginx (pour le frontend)
 
 ## 🔧 Configuration
 
 ### Variables d'environnement
 
-Les variables sont configurées dans `docker-compose.yml` :
+Les variables d'environnement sont configurées dans `docker-compose.yml` :
 
-```yaml
-environment:
-  SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/todolist_db
-  SPRING_DATASOURCE_USERNAME: todolist_user
-  SPRING_DATASOURCE_PASSWORD: todolist_password
-```
+- **MySQL**:
+  - `MYSQL_ROOT_PASSWORD`: root_password
+  - `MYSQL_DATABASE`: todolist_db
+  - `MYSQL_USER`: todolist_user
+  - `MYSQL_PASSWORD`: todolist_password
+
+- **Spring Boot**:
+  - `SPRING_DATASOURCE_URL`: jdbc:mysql://mysql:3306/todolist_db
+  - `SPRING_DATASOURCE_USERNAME`: todolist_user
+  - `SPRING_DATASOURCE_PASSWORD`: todolist_password
+
+### Ports
+
+- **Frontend**: 4200
+- **Backend**: 8080
+- **MySQL**: 3306
+
+## 📝 Développement
+
+### Backend (Spring Boot)
+
+Le backend est configuré avec :
+- Un endpoint de santé : `GET /api/health`
+- Configuration de sécurité basique
+- Connexion à MySQL configurée
+- Structure prête pour l'ajout de modèles, contrôleurs et services
+
+### Frontend (Angular)
+
+Le frontend est configuré avec :
+- Une page d'accueil simple
+- Styles CSS de base
+- Configuration Angular prête pour le développement
+- Proxy configuré pour les appels API
 
 ### Base de données
 
-La base de données est initialisée automatiquement avec le script `database/schema/init.sql`.
+La base de données MySQL est initialisée avec un script vide (`init.sql`) prêt pour l'ajout de tables.
 
-## 📝 API Endpoints
+## 🚀 Prochaines étapes
 
-### Health Check
-- `GET /api/health` - Vérification de l'état de l'API
+1. **Créer les modèles de données** (User, Project, Task)
+2. **Implémenter les contrôleurs REST**
+3. **Développer l'interface utilisateur Angular**
+4. **Ajouter l'authentification JWT**
+5. **Implémenter les fonctionnalités collaboratives**
 
 ## 🤝 Contribution
 
 1. Fork le projet
 2. Créer une branche feature (`git checkout -b feature/nouvelle-fonctionnalite`)
-3. Commit les changements (`git commit -m 'Ajouter nouvelle fonctionnalité'`)
+3. Commit les changements (`git commit -am 'Ajouter nouvelle fonctionnalité'`)
 4. Push vers la branche (`git push origin feature/nouvelle-fonctionnalite`)
-5. Ouvrir une Pull Request
+5. Créer une Pull Request
 
-## 📋 Prochaines étapes
+## 📞 Support
 
-- [ ] Implémenter l'authentification JWT
-- [ ] Créer les modèles de données (User, Project, Task)
-- [ ] Développer l'API REST complète
-- [ ] Créer l'interface utilisateur Angular
-- [ ] Ajouter les tests unitaires et d'intégration
-- [ ] Configurer CI/CD avec GitHub Actions
-
-## 🐛 Dépannage
-
-### Problèmes courants
-
-1. **Port déjà utilisé**
-   ```bash
-   # Vérifier les ports utilisés
-   netstat -tulpn | grep :8080
-   # Arrêter les services Docker
-   docker-compose down
-   ```
-
-2. **Erreur de build**
-   ```bash
-   # Nettoyer et reconstruire
-   docker-compose down
-   docker-compose build --no-cache
-   docker-compose up -d
-   ```
-
-3. **Problème de base de données**
-   ```bash
-   # Supprimer le volume et redémarrer
-   docker-compose down -v
-   docker-compose up -d
-   ```
-
-## 📄 Licence
-
-Ce projet est sous licence MIT. Voir le fichier `LICENSE` pour plus de détails.
-
-## 👥 Équipe
-
-- **Backend** : [Votre nom]
-- **Frontend** : [Votre nom]
-- **DevOps** : [Votre nom]
+Pour toute question ou problème, créer une issue sur GitHub.
 
 ---
 
-**Note** : Ce projet est actuellement en phase de développement initial. La base de données est vide et prête pour le développement.
+**Projet prêt pour le développement collaboratif ! 🎉**
