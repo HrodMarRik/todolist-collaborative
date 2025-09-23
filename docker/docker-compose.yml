@@ -1,0 +1,52 @@
+version: '3.8'
+
+services:
+  # MySQL Database
+  mysql:
+    build: ./mysql
+    container_name: todolist-mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: root_password
+      MYSQL_DATABASE: todolist_db
+      MYSQL_USER: todolist_user
+      MYSQL_PASSWORD: todolist_password
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+      - ../database/schema/init.sql:/docker-entrypoint-initdb.d/init.sql
+    networks:
+      - todolist-network
+
+  # Spring Boot Backend
+  backend:
+    build: ./backend
+    container_name: todolist-backend
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/todolist_db?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true
+      SPRING_DATASOURCE_USERNAME: todolist_user
+      SPRING_DATASOURCE_PASSWORD: todolist_password
+    ports:
+      - "8080:8080"
+    depends_on:
+      - mysql
+    networks:
+      - todolist-network
+
+  # Angular Frontend
+  frontend:
+    build: ./frontend
+    container_name: todolist-frontend
+    ports:
+      - "4200:4200"
+    depends_on:
+      - backend
+    networks:
+      - todolist-network
+
+volumes:
+  mysql_data:
+
+networks:
+  todolist-network:
+    driver: bridge
