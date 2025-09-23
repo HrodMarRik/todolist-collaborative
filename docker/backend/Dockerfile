@@ -1,19 +1,19 @@
 # Multi-stage build for Spring Boot
-FROM maven:3.9.5-openjdk-17-slim AS build
+FROM maven:3.8.6-openjdk-11 AS build
 
 # Set working directory
 WORKDIR /app
 
 # Copy pom.xml and download dependencies
-COPY pom.xml .
+COPY backend/pom.xml .
 RUN mvn dependency:go-offline -B
 
 # Copy source code and build
-COPY src ./src
+COPY backend/src ./src
 RUN mvn clean package -DskipTests
 
 # Runtime stage
-FROM openjdk:17-jdk-slim
+FROM openjdk:11-jdk-slim
 
 WORKDIR /app
 
