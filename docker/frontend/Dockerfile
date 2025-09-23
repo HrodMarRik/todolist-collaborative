@@ -4,13 +4,13 @@ FROM node:18-alpine AS build
 WORKDIR /app
 
 # Copy package files
-COPY package*.json ./
+COPY frontend/package*.json ./
 
 # Install dependencies
-RUN npm ci
+RUN npm install
 
 # Copy source code
-COPY . .
+COPY frontend/ ./
 
 # Build the application
 RUN npm run build
@@ -22,7 +22,7 @@ FROM nginx:alpine
 COPY --from=build /app/dist/todolist-frontend /usr/share/nginx/html
 
 # Copy nginx configuration
-COPY nginx.conf /etc/nginx/nginx.conf
+COPY docker/frontend/nginx.conf /etc/nginx/nginx.conf
 
 # Expose port
 EXPOSE 4200
