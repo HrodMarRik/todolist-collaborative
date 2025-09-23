@@ -19,7 +19,6 @@ ToDoList Collaborative est une solution moderne qui permet aux équipes de **cr�
 - 📊 **Vue Kanban** - Organisation visuelle des tâches par statut
 - 🔐 **Authentification sécurisée** - JWT et gestion des rôles
 - 📱 **Interface responsive** - Accessible sur tous les appareils
-- 🔔 **Notifications temps réel** - Suivi des modifications
 
 ## 🚀 Démarrage Rapide
 

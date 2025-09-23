@@ -465,7 +465,6 @@ curl http://localhost:4200
 □ Code compilé sans erreurs
 □ Tests passent
 □ Code formaté correctement
-□ Message de commit descriptif
 □ Pas de fichiers temporaires
 □ Documentation mise à jour si nécessaire
 ```
@@ -615,27 +614,3 @@ git merge upstream/develop
 3. **Demander** de l'aide sur Discussions
 4. **Créer** une issue si nécessaire
 
----
-
-## 🎉 Félicitations !
-
-Vous êtes maintenant prêt à contribuer au projet ToDoList Collaborative !
-
-### **Prochaines Étapes**
-1. **Choisir** une issue "Good First Issue"
-2. **Créer** votre première branche
-3. **Développer** votre fonctionnalité
-4. **Créer** votre première Pull Request
-5. **Apprendre** des reviews de code
-
-### **Rappel Important**
-- **Communiquez** avec l'équipe
-- **Posez** des questions
-- **Apprenez** des erreurs
-- **Partagez** vos connaissances
-
----
-
-**Bienvenue dans l'équipe ToDoList Collaborative ! 🚀**
-
-*Ce tutoriel est vivant et s'améliore grâce à vos contributions.*
