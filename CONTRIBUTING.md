@@ -3,74 +3,52 @@
 ## 🚀 Comment Contribuer
 
 ### 1. Configuration Initiale
-
-#### Fork et Clone
 ```bash
-# Fork le repository sur GitHub
-# Puis clonez votre fork
+# Fork et clone
 git clone https://github.com/VOTRE_USERNAME/todolist-collaborative.git
 cd todolist-collaborative
 
-# Ajoutez le repository original comme remote
-git remote add upstream https://github.com/ORIGINAL_OWNER/todolist-collaborative.git
-```
-
-#### Configuration des Branches
-```bash
-# Créez une branche pour votre fonctionnalité
+# Créer une branche
 git checkout -b feature/nom-de-votre-fonctionnalite
-
-# Ou pour un bug fix
-git checkout -b bugfix/description-du-bug
 ```
 
 ### 2. Workflow de Développement
 
-#### Branches Principales
+#### Branches
 - `main` : Code de production stable
 - `develop` : Code de développement intégré
-
-#### Types de Branches
 - `feature/*` : Nouvelles fonctionnalités
 - `bugfix/*` : Corrections de bugs
-- `hotfix/*` : Corrections urgentes
-- `docs/*` : Documentation uniquement
 
 ### 3. Standards de Code
 
 #### Backend (Spring Boot)
-- Utilisez Java 17+
-- Suivez les conventions Spring Boot
-- Ajoutez des tests unitaires
-- Documentez les APIs avec JavaDoc
+- Java 11+
+- Conventions Spring Boot
+- Tests unitaires
+- Documentation JavaDoc
 
 #### Frontend (Angular)
-- Utilisez TypeScript strict
-- Suivez le style guide Angular
-- Ajoutez des tests unitaires
-- Utilisez Angular Material pour l'UI
-
-#### Base de Données
-- Utilisez des migrations pour les changements de schéma
-- Documentez les nouvelles tables/colonnes
-- Testez les requêtes de performance
+- TypeScript strict
+- Style guide Angular
+- Tests unitaires
+- Angular Material pour l'UI
 
 ### 4. Processus de Pull Request
 
 #### Avant de Soumettre
 ```bash
-# Synchronisez avec le repository principal
+# Synchroniser avec le repository principal
 git fetch upstream
 git checkout develop
 git merge upstream/develop
 
-# Mettez à jour votre branche
+# Mettre à jour votre branche
 git checkout feature/votre-branche
 git rebase develop
 
-# Testez votre code
-cd backend && mvn test
-cd ../frontend && npm test
+# Tester
+docker-compose up -d
 ```
 
 #### Template de Pull Request
@@ -88,99 +66,42 @@ Brève description des changements
 - [ ] Tests unitaires ajoutés/mis à jour
 - [ ] Tests d'intégration
 - [ ] Tests manuels effectués
-
-## Checklist
-- [ ] Code conforme aux standards
-- [ ] Documentation mise à jour
-- [ ] Pas de conflits avec develop
 ```
 
-### 5. Structure du Projet
-
-```
-todolist-collaborative/
-├── backend/          # Spring Boot API
-├── frontend/         # Angular Application
-├── database/         # Scripts SQL
-├── docker/           # Configuration Docker
-├── docs/             # Documentation
-└── .github/          # GitHub Actions & Templates
-```
-
-### 6. Rôles et Responsabilités
+### 5. Rôles et Responsabilités
 
 #### Backend Developer
-- Développement des APIs REST
-- Gestion de la sécurité (JWT)
-- Optimisation des requêtes DB
-- Tests unitaires et d'intégration
+- APIs REST Spring Boot
+- Sécurité (JWT)
+- Optimisation DB
+- Tests unitaires
 
 #### Frontend Developer
-- Développement de l'interface utilisateur
-- Intégration avec les APIs
-- Tests unitaires Angular
+- Interface Angular
+- Intégration APIs
+- Tests Angular
 - Responsive design
 
 #### DevOps Engineer
 - Configuration Docker
 - CI/CD Pipeline
-- Monitoring et logs
+- Monitoring
 - Déploiement
 
-#### UI/UX Designer
-- Design des interfaces
-- Expérience utilisateur
-- Prototypes et maquettes
-- Tests utilisateur
+### 6. Communication
 
-### 7. Communication
-
-#### Channels de Communication
 - **Issues GitHub** : Bugs et nouvelles fonctionnalités
 - **Discussions** : Questions générales
 - **Pull Requests** : Reviews de code
 - **Projects** : Suivi des tâches
 
-#### Réunions
-- **Daily Standup** : 15 min chaque matin
-- **Sprint Planning** : Début de chaque sprint
-- **Retrospective** : Fin de chaque sprint
+### 7. Outils Requis
 
-### 8. Outils de Développement
-
-#### Requis
-- Java 17+
+- Java 11+
 - Node.js 18+
 - Docker & Docker Compose
 - Git
 - IDE (IntelliJ IDEA / VS Code)
-
-#### Recommandés
-- Postman (API testing)
-- MySQL Workbench (DB management)
-- Angular DevTools
-- Spring Boot DevTools
-
-### 9. Ressources
-
-#### Documentation
-- [Spring Boot Documentation](https://spring.io/projects/spring-boot)
-- [Angular Documentation](https://angular.io/docs)
-- [MySQL Documentation](https://dev.mysql.com/doc/)
-- [Docker Documentation](https://docs.docker.com/)
-
-#### Tutoriels
-- [Spring Boot Tutorial](https://spring.io/guides/gs/spring-boot/)
-- [Angular Tutorial](https://angular.io/tutorial)
-- [Docker Tutorial](https://docs.docker.com/get-started/)
-
-### 10. Support
-
-Pour toute question :
-1. Consultez la documentation
-2. Recherchez dans les issues existantes
-3. Créez une nouvelle issue si nécessaire
-4. Contactez l'équipe via Discussions
 
 ---
 
