@@ -11,7 +11,7 @@ services:
       MYSQL_USER: todolist_user
       MYSQL_PASSWORD: todolist_password
     ports:
-      - "3306:3306"
+      - "3307:3307"
     volumes:
       - mysql_data:/var/lib/mysql
       - ./database/schema/init.sql:/docker-entrypoint-initdb.d/init.sql
