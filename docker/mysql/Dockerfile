@@ -10,4 +10,4 @@ ENV MYSQL_PASSWORD=todolist_password
 COPY init.sql /docker-entrypoint-initdb.d/
 
 # Expose port
-EXPOSE 3306
+EXPOSE 3307
