@@ -1,7 +1,9 @@
 import {Routes } from '@angular/router';
-import { AppComponent } from './app.component';
+import { ListComponent } from './list/list.component';
+import { AppHome } from './home/home.component';
 
 export const routes: Routes = [
-      { path: '', redirectTo: '/home' },
-      { path: '/home', component: AppComponent  },
+      { path: '', redirectTo: 'home', pathMatch: 'full' },
+      { path: 'home', component: AppHome },
+      { path: 'list', component: ListComponent },
 ];
