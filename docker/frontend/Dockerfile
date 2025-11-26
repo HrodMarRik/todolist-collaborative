@@ -8,9 +8,9 @@ COPY frontend/package*.json ./
 
 # Install dependencies
 RUN npm install
-
+ 
 # Copy source code
-COPY frontend/ ./
+COPY frontend .
 
 # Build the application
 RUN npm run build
@@ -19,7 +19,7 @@ RUN npm run build
 FROM nginx:alpine
 
 # Copy built app to nginx
-COPY --from=build /app/dist/todolist-frontend /usr/share/nginx/html
+COPY --from=build /app/dist/todolist-frontend/browser /usr/share/nginx/html
 
 # Copy nginx configuration
 COPY docker/frontend/nginx.conf /etc/nginx/nginx.conf

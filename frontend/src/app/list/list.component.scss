@@ -1,0 +1,41 @@
+@import "../../styles.scss";
+
+#sidebar-wrapper {
+  height: 100%; 
+  width: 200px; 
+  position: fixed;
+  z-index: 1; 
+  left: 0;
+  background-color: white;
+  box-shadow: lightgray 0px 2px 20px 0px;
+  overflow-x: hidden; 
+  padding-top: 20px;
+  padding: 20px;
+}
+
+a {
+  text-decoration: none;
+  font-size: 22px;
+  color: $primary;
+}
+
+/* When you mouse over the navigation links, change their color */
+a:hover {
+  color: $lighter-primary;
+}
+
+ul{
+    list-style: none;
+}
+
+li {
+  padding-top: 4px;
+}
+
+hr.solid {
+  padding-top: 4px;
+  border-top: 1px solid grey;
+  width: 80%;
+  margin: auto;
+  opacity: 1; 
+}

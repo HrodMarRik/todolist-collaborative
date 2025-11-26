@@ -8,6 +8,7 @@ import { listService } from '../services/listService';
   standalone: true,
   imports: [NavbarComponent],
   templateUrl: './list.component.html',
+  styleUrl: './list.component.scss'
 })
 export class ListComponent implements OnInit{
 

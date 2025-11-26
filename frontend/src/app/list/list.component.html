@@ -1,5 +1,40 @@
+<div id="sidebar-wrapper">
+            <ul>
+                <li>
+                    <a href="#"><i class="fa-solid fa-grip" aria-hidden="true"> </i> 
+                    <span>Home</span>  </a>
+                </li>
+                <li>
+                    <a href="#"> <i class="fa-regular fa-comment-dots" aria-hidden="true"> </i> 
+                    <span>Messages</span> </a>
+                </li>
+                <li>
+                    <a href="#"> <i class="fa-solid fa-list-check" aria-hidden="true"> </i> 
+                    <span>Task</span> </a>
+                </li>
+                <li>
+                    <a href="#"> <i class="fa-solid fa-users" aria-hidden="true"> </i> 
+                    <span>Members</span> </a>
+                </li>
+                <li>
+                    <a href="#"><i class="fa-solid fa-gear" aria-hidden="true"> </i> 
+                    <span>Settings </span> </a>
+                </li>
+            </ul>
+            <hr class="solid">
+            <div class="d-flex flex-row justify-content-between align-items-center w-75">
+                <span>My projects</span>
+                <i class="fa-regular fa-square-plus"></i>
+            </div>
+            
+            <ul>
+                @for (list of AllTables; track list.title){
+                    <li>{{list.title}}</li>  
+                }
+            </ul>
+            
+        </div>
 
-@for (list of AllTables; track list.title){
-    <h1>{{list.title}}</h1>  
-}
+
+
 
