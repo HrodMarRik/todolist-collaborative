@@ -27,7 +27,7 @@ public class ListColumnController {
         return repository.findById(listColumnId).get();
     }
 
-
+/* 
     @PostMapping("/listColumn")
     public ListColumn create(@RequestBody Map<String, String> body){
         String title = body.get("title");
@@ -50,6 +50,6 @@ public class ListColumnController {
         repository.deleteById(listColumnId);
         return true;
     }
-
+*/
 
 }

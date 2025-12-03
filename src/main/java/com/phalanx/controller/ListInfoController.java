@@ -33,6 +33,7 @@ public class ListInfoController {
         return repository.findByTitleContaining(searchTerm);
     }
 
+    /* 
     @PostMapping("/list")
     public ListInfo create(@RequestBody Map<String, String> body){
         String title = body.get("title");
@@ -57,6 +58,6 @@ public class ListInfoController {
         repository.deleteById(listId);
         return true;
     }
-
+*/
 
 }

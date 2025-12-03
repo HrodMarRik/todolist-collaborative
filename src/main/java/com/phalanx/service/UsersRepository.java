@@ -11,5 +11,5 @@ import com.phalanx.model.Users;
 public interface UsersRepository extends JpaRepository<Users, Integer> {
 
        // custom query to search in contact
-    List<Users> findByLastNameContaining(String text);  
+    List<Users> findByLastnameContaining(String text);  
 }

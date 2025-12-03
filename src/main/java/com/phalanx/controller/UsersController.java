@@ -7,7 +7,6 @@ import com.phalanx.model.Users;
 import com.phalanx.service.UsersRepository;
 
 import java.util.List;
-import java.util.Map;
 
 @RestController
 @RequestMapping("api")
@@ -27,6 +26,7 @@ public class UsersController {
         return repository.findById(userId).get();
     }
 
+    /* 
     @PostMapping("/user")
     public Users create(@RequestBody Map<String, String> body){
         String lastName = body.get("lastName");
@@ -57,4 +57,5 @@ public class UsersController {
         repository.deleteById(listId);
         return true;
     }
+        */
 }

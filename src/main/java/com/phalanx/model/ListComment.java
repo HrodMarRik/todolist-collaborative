@@ -1,9 +1,14 @@
 package com.phalanx.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 
 @Entity
 public class ListComment {
@@ -12,16 +17,24 @@ public class ListComment {
     private int id_comment;
 
     String content;
-    int id_task;
-    int id_users;
+
+    @ManyToOne
+    @JoinColumn(name="id_task")
+    @JsonIgnoreProperties("listComments")
+    Task task;
+
+    @ManyToOne
+    @JoinColumn(name="id_users")
+    @JsonIgnoreProperties("listComments")
+    Users user;
 
     public ListComment() {
     }
 
-    public ListComment(String content, int id_task, int id_users) {
+    public ListComment(String content, Task task, Users user) {
         this.content = content;
-        this.id_task = id_task;
-        this.id_users = id_users;
+        this.task = task;
+        this.user = user;
     }
 
     public int getId_comment() {
@@ -40,20 +53,20 @@ public class ListComment {
         this.content = content;
     }
 
-    public int getId_task() {
-        return this.id_task;
+    public Task getTask() {
+        return this.task;
     }
 
-    public void setId_task(int id_task) {
-        this.id_task = id_task;
+    public void setTask(Task task) {
+        this.task = task;
     }
 
-    public int getId_users() {
-        return this.id_users;
+    public Users getUser() {
+        return this.user;
     }
 
-    public void setId_users(int id_users) {
-        this.id_users = id_users;
+    public void setUser(Users user) {
+        this.user = user;
     }
 
 }

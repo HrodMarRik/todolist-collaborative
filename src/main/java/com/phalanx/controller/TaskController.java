@@ -31,6 +31,7 @@ public class TaskController {
         return repository.findById(taskId).get();
     }
 
+    /* 
     @PostMapping("/task")
     public Task create(@RequestBody Map<String, String> body){
         String name = body.get("name");
@@ -65,4 +66,5 @@ public class TaskController {
         repository.deleteById(taskId);
         return true;
     }
+    */
 }

@@ -1,10 +1,19 @@
 package com.phalanx.model;
 
 import java.time.LocalDate;
+import java.util.Set;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 
 @Entity
 public class Task {
@@ -18,21 +27,34 @@ public class Task {
     LocalDate creationdate;
     String status;
     String priority;
-    int id_column;
-    int id_users;
+
+    @ManyToOne
+    @JoinColumn(name="id_column")
+    @JsonIgnoreProperties("Tasks")
+    ListColumn ListColumn;
+
+    @ManyToOne
+    @JoinColumn(name="id_users")
+    @JsonIgnoreProperties("task")
+    Users Users;
+
+    @OneToMany(mappedBy = "task")
+    @JsonIgnoreProperties("task")
+    Set<ListComment> listComments;
 
     public Task() {
     }
 
-    public Task( String name, String description, LocalDate enddate, LocalDate creationdate, String status, String priority, int id_column, int id_users) {
+    public Task(String name, String description, LocalDate enddate, LocalDate creationdate, String status, String priority, ListColumn ListColumn, Users Users, Set<ListComment> listComments) {
         this.name = name;
         this.description = description;
         this.enddate = enddate;
         this.creationdate = creationdate;
         this.status = status;
         this.priority = priority;
-        this.id_column = id_column;
-        this.id_users = id_users;
+        this.ListColumn = ListColumn;
+        this.Users = Users;
+        this.listComments = listComments;
     }
 
     public int getId_task() {
@@ -91,20 +113,28 @@ public class Task {
         this.priority = priority;
     }
 
-    public int getId_column() {
-        return this.id_column;
+    public ListColumn getListColumn() {
+        return this.ListColumn;
     }
 
-    public void setId_column(int id_column) {
-        this.id_column = id_column;
+    public void setListColumn(ListColumn ListColumn) {
+        this.ListColumn = ListColumn;
     }
 
-    public int getId_users() {
-        return this.id_users;
+    public Users getUsers() {
+        return this.Users;
     }
 
-    public void setId_users(int id_users) {
-        this.id_users = id_users;
-    }    
+    public void setUsers(Users Users) {
+        this.Users = Users;
+    }
+
+    public Set<ListComment> getListComments() {
+        return this.listComments;
+    }
+
+    public void setListComments(Set<ListComment> listComments) {
+        this.listComments = listComments;
+    }
 
 }

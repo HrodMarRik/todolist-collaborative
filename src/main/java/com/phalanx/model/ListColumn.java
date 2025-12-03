@@ -1,9 +1,14 @@
 package com.phalanx.model;
 
+import java.util.List;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 
 @Entity
 public class ListColumn {
@@ -12,14 +17,23 @@ public class ListColumn {
     private int id_column;
 
     String title;
-    int id_list;
+
+    @ManyToOne
+    @JoinColumn(name="id_list")
+    @JsonIgnoreProperties("ListColumn")
+    ListInfo ListInfo;
+
+    @OneToMany(mappedBy = "ListColumn")
+    @JsonIgnoreProperties("ListColumn")
+    List<Task> Tasks;
 
     public ListColumn() {
     }
 
-    public ListColumn( String title, int id_list) {
+    public ListColumn(String title, ListInfo ListInfo, List<Task> Tasks) {
         this.title = title;
-        this.id_list = id_list;
+        this.ListInfo = ListInfo;
+        this.Tasks = Tasks;
     }
 
     public int getId_column() {
@@ -38,12 +52,21 @@ public class ListColumn {
         this.title = title;
     }
 
-    public int getId_list() {
-        return this.id_list;
+    public ListInfo getListInfo() {
+        return this.ListInfo;
     }
 
-    public void setId_list(int id_list) {
-        this.id_list = id_list;
+    public void setListInfo(ListInfo ListInfo) {
+        this.ListInfo = ListInfo;
     }
+
+    public List<Task> getTasks() {
+        return this.Tasks;
+    }
+
+    public void setTasks(List<Task> Tasks) {
+        this.Tasks = Tasks;
+    }
+
 
 }

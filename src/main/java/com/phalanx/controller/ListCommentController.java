@@ -27,7 +27,7 @@ public class ListCommentController {
         return repository.findById(ListCommentId).get();
     }
 
-
+/* 
     @PostMapping("/ListComment")
     public ListComment create(@RequestBody Map<String, String> body){
         String content = body.get("content");
@@ -52,6 +52,6 @@ public class ListCommentController {
         repository.deleteById(ListCommentId);
         return true;
     }
-
+*/
 
 }
