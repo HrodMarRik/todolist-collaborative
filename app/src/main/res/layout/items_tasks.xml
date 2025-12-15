@@ -3,15 +3,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:padding="10dp">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/task_container"
-        android:layout_width="0dp"
+        android:layout_width="match_parent"
         android:layout_height="200dp"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="190dp"
-        android:layout_marginEnd="10dp"
         android:background="@drawable/task"
         android:minHeight="?attr/actionBarSize"
         android:theme="?attr/actionBarTheme"
@@ -20,7 +18,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/textView8"
+        android:id="@+id/NomTache"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
@@ -32,7 +30,7 @@
         app:layout_constraintEnd_toEndOf="@+id/task_container"
         app:layout_constraintHorizontal_bias="0.006"
         app:layout_constraintStart_toStartOf="@+id/task_container"
-        app:layout_constraintTop_toBottomOf="@+id/textView9" />
+        app:layout_constraintTop_toBottomOf="@+id/Priorite" />
 
     <TextView
         android:id="@+id/textView11"
@@ -48,7 +46,7 @@
         app:layout_constraintEnd_toEndOf="@+id/task_container" />
 
     <TextView
-        android:id="@+id/textView10"
+        android:id="@+id/Description"
         android:layout_width="350dp"
         android:layout_height="37dp"
         android:layout_marginStart="20dp"
@@ -59,10 +57,10 @@
         app:layout_constraintEnd_toEndOf="@+id/task_container"
         app:layout_constraintHorizontal_bias="0.006"
         app:layout_constraintStart_toStartOf="@+id/task_container"
-        app:layout_constraintTop_toBottomOf="@+id/textView8" />
+        app:layout_constraintTop_toBottomOf="@+id/NomTache" />
 
     <TextView
-        android:id="@+id/textView9"
+        android:id="@+id/Priorite"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
