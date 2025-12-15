@@ -7,7 +7,7 @@
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/background"
         android:layout_width="0dp"
-        android:layout_height="169dp"
+        android:layout_height="180dp"
         android:background="@color/darkred"
         android:minHeight="?attr/actionBarSize"
         android:theme="?attr/actionBarTheme"
@@ -40,10 +40,10 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <ImageView
-        android:id="@+id/imageView5"
+        android:id="@+id/Avatar"
         android:layout_width="50dp"
         android:layout_height="50dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="40dp"
         android:background="@drawable/avatar"
         android:backgroundTint="@color/white"
         app:layout_constraintEnd_toEndOf="@+id/background"
@@ -55,11 +55,11 @@
         android:id="@+id/button2"
         android:layout_width="20dp"
         android:layout_height="20dp"
-        android:layout_marginTop="35dp"
+        android:layout_marginTop="55dp"
         android:background="@drawable/angle_down_solid_full"
         android:backgroundTint="@color/white"
         app:layout_constraintEnd_toEndOf="@+id/background"
-        app:layout_constraintStart_toEndOf="@+id/imageView5"
+        app:layout_constraintStart_toEndOf="@+id/Avatar"
         app:layout_constraintTop_toTopOf="@+id/background" />
 
     <androidx.appcompat.widget.AppCompatButton
@@ -67,16 +67,16 @@
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:layout_marginStart="20dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="40dp"
         android:background="@drawable/bars_solid_full"
         android:backgroundTint="@color/white"
-        app:layout_constraintEnd_toStartOf="@+id/imageView5"
+        app:layout_constraintEnd_toStartOf="@+id/Avatar"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/background" />
 
     <TextView
-        android:id="@+id/textView4"
+        android:id="@+id/TitreList"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
@@ -90,21 +90,21 @@
         app:layout_constraintTop_toBottomOf="@+id/button4" />
 
     <TextView
-        android:id="@+id/textView5"
+        android:id="@+id/NomPrenom"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="55dp"
         android:layout_marginEnd="10dp"
         android:text="Nom Prenom"
         android:textColor="@color/white"
         android:textSize="16sp"
-        app:layout_constraintEnd_toStartOf="@+id/imageView5"
+        app:layout_constraintEnd_toStartOf="@+id/Avatar"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toEndOf="@+id/button4"
         app:layout_constraintTop_toTopOf="@+id/background" />
 
     <TextView
-        android:id="@+id/textView6"
+        android:id="@+id/ColumnName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="10dp"
@@ -128,11 +128,11 @@
         app:iconTint="@color/darkred"
         app:layout_constraintEnd_toEndOf="@+id/background"
         app:layout_constraintHorizontal_bias="0.76"
-        app:layout_constraintStart_toEndOf="@+id/textView4"
-        app:layout_constraintTop_toBottomOf="@+id/imageView5" />
+        app:layout_constraintStart_toEndOf="@+id/TitreList"
+        app:layout_constraintTop_toBottomOf="@+id/Avatar" />
 
     <Button
-        android:id="@+id/btn_modifierlist2"
+        android:id="@+id/btn_inviter"
         android:layout_width="26dp"
         android:layout_height="30dp"
         android:layout_marginStart="10dp"
@@ -146,6 +146,6 @@
         app:layout_constraintEnd_toEndOf="@+id/background"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/btn_modifierlist"
-        app:layout_constraintTop_toBottomOf="@+id/imageView5" />
+        app:layout_constraintTop_toBottomOf="@+id/Avatar" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
