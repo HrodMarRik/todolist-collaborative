@@ -9,5 +9,4 @@ public class PhalanxApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(PhalanxApplication.class, args);
 	}
-
 }

@@ -4,7 +4,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import com.phalanx.model.ListComment;
+import com.phalanx.model.Task;
+import com.phalanx.model.Users;
 import com.phalanx.service.ListCommentRepository;
+import com.phalanx.service.TaskRepository;
+import com.phalanx.service.UsersRepository;
 
 import java.util.List;
 import java.util.Map;
@@ -15,6 +19,12 @@ public class ListCommentController {
    
     @Autowired
     private ListCommentRepository repository;
+    
+    @Autowired
+    private TaskRepository taskRepository;
+    
+    @Autowired
+    private UsersRepository usersRepository;
 
     @GetMapping("/ListComment")
     public List<ListComment> index(){
@@ -27,31 +37,35 @@ public class ListCommentController {
         return repository.findById(ListCommentId).get();
     }
 
-/* 
     @PostMapping("/ListComment")
     public ListComment create(@RequestBody Map<String, String> body){
         String content = body.get("content");
-        int id_task = Integer.parseInt(body.get("id_task"));
-        int id_users = Integer.parseInt(body.get("id_users"));
-        return repository.save(new ListComment(content, id_task, id_users));
+        int idTask = Integer.parseInt(body.get("id_task"));
+        int idUsers = Integer.parseInt(body.get("id_users"));
+        Task task = taskRepository.findById(idTask).get();
+        Users users = usersRepository.findById(idUsers).get();
+        return repository.save(new ListComment(content, task, users));
     }
 
     @PutMapping("/ListComment/{id}")
     public ListComment update(@PathVariable String id, @RequestBody Map<String, String> body){
-        int ListCommentId = Integer.parseInt(id);
-        ListComment ListComment = repository.findById(ListCommentId).get();
-        ListComment.setContent(body.get("content"));
-        ListComment.setId_task( Integer.parseInt(body.get("id_task")) );
-        ListComment.setId_users( Integer.parseInt(body.get("id_users")) );
-        return repository.save(ListComment);
+        int listCommentId = Integer.parseInt(id);
+        ListComment listComment = repository.findById(listCommentId).get();
+        listComment.setContent(body.get("content"));
+        int idTask = Integer.parseInt(body.get("id_task"));
+        int idUsers = Integer.parseInt(body.get("id_users"));
+        Task task = taskRepository.findById(idTask).get();
+        Users users = usersRepository.findById(idUsers).get();
+        listComment.setTask(task);
+        listComment.setUser(users);
+        return repository.save(listComment);
     }
 
-    @DeleteMapping("ListComment/{id}")
+    @DeleteMapping("/ListComment/{id}")
     public boolean delete(@PathVariable String id){
-        int ListCommentId = Integer.parseInt(id);
-        repository.deleteById(ListCommentId);
+        int listCommentId = Integer.parseInt(id);
+        repository.deleteById(listCommentId);
         return true;
     }
-*/
 
 }
