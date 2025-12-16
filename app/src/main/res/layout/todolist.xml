@@ -1,14 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="179dp"
+        tools:layout_editor_absoluteX="1dp"
+        tools:layout_editor_absoluteY="1dp">
 
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/background"
@@ -93,7 +95,29 @@
             app:layout_constraintEnd_toEndOf="@+id/background"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="@+id/background"
-            app:layout_constraintTop_toBottomOf="@+id/button4" />
+            app:layout_constraintTop_toBottomOf="@+id/button4"
+            android:visibility="visible"/>
+
+        <EditText
+            android:id="@+id/TitreListModif"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:layout_marginStart="10dp"
+            android:paddingStart="10dp"
+            android:text="Titre List"
+            android:textSize="20sp"
+            android:layout_marginTop="5dp"
+            android:ems="12"
+            android:inputType="text"
+            android:background="@drawable/textbox"
+            android:backgroundTint="#FFFFFF"
+            app:layout_constraintEnd_toEndOf="@+id/background"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/background"
+            app:layout_constraintTop_toBottomOf="@+id/button4"
+            android:visibility="invisible"
+            android:singleLine="true"
+            android:imeOptions="actionGo|actionDone"/>
 
         <TextView
             android:id="@+id/NomPrenom"
@@ -127,8 +151,8 @@
             android:layout_height="30dp"
             android:layout_marginTop="10dp"
             android:backgroundTint="@color/gold"
-            android:paddingLeft="4dp"
-            android:paddingRight="3dp"
+            android:paddingStart="4dp"
+            android:paddingEnd="3dp"
             app:icon="@drawable/pen_solid_full"
             app:iconPadding="0dp"
             app:iconTint="@color/darkred"
@@ -154,15 +178,41 @@
             app:layout_constraintStart_toEndOf="@+id/btn_modifierlist"
             app:layout_constraintTop_toBottomOf="@+id/Avatar" />
 
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageButton
+            android:id="@+id/buttonAddTasks"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_gravity="end"
+            android:layout_marginEnd="30dp"
+            android:layout_marginBottom="30dp"
+            android:background="@drawable/buttongradient"
+            android:contentDescription="ajouter"
+            android:elevation="4dp"
+            android:scaleType="fitCenter"
+            android:src="@android:drawable/ic_input_add"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/ListTasks"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="@+id/ListTasks"
+            app:tint="@color/white" />
+
+        <ListView
+            android:id="@+id/ListTasks"
+            android:layout_width="409dp"
+            android:layout_height="600dp"
+            android:divider="@null"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <ListView
-        android:id="@+id/ListTasks"
-        android:layout_width="409dp"
-        android:layout_height="889dp"
-        tools:layout_editor_absoluteX="1dp"
-        tools:layout_editor_absoluteY="1dp"
-        android:divider="@null"/>
+
 
 
 </LinearLayout>

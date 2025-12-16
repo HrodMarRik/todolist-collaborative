@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="400dp"
+    android:layout_height="wrap_content"
+    android:padding="10dp"
+    android:elevation="5dp">
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <com.google.android.material.textfield.TextInputLayout
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+        android:layout_width="370dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_weight="2">
+
+    <AutoCompleteTextView
+        android:id="@+id/PrioriteOptions"
+        android:layout_width="200dp"
+        android:layout_height="40dp"
+        android:inputType="none"
+        android:hint="Priorité"
+        android:background="@drawable/textbox"
+        android:paddingStart="5dp"/>
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <EditText
+        android:id="@+id/NomDialog"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="10dp"
+        android:fontFamily="@font/montserrat_regular"
+        android:text="Titre Task"
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        android:inputType="text"/>
+
+    <EditText
+        android:id="@+id/Description"
+        android:layout_width="350dp"
+        android:layout_height="wrap_content"
+        android:inputType="textMultiLine"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="10dp"
+        android:fontFamily="@font/montserrat_regular"
+        android:text="Contenu contenu contenu contenu contenu contenu contenu contenu contenu contenu contenu"
+        android:textSize="14sp" />
+
+</LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="30dp"
+            android:gravity="center">
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/buttonValider"
+                android:layout_width="wrap_content"
+                android:layout_height="35dp"
+                android:background="@drawable/buttongradient"
+                android:elevation="2dp"
+                android:fontFamily="@font/montserrat_regular"
+                android:text="Valider"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                android:textColor="@color/white"
+                android:textColorLink="@color/orange"
+                android:textSize="16sp"
+                app:rippleColor="@color/orange" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/buttonAnnuler"
+                android:layout_width="wrap_content"
+                android:layout_height="35dp"
+                android:layout_marginLeft="80dp"
+                android:background="@drawable/buttongradient"
+                android:backgroundTint="@color/black"
+                android:elevation="2dp"
+                android:fontFamily="@font/montserrat_regular"
+                android:text="Annuler"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                android:textColor="@color/white"
+                android:textColorLink="@color/orange"
+                android:textSize="16sp"
+                app:rippleColor="@color/orange" />
+
+        </LinearLayout>
+</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

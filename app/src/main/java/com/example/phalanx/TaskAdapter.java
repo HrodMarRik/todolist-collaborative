@@ -39,7 +39,7 @@ public class TaskAdapter extends BaseAdapter {
         if(convertView==null){
             convertView = LayoutInflater.from(context).inflate(R.layout.items_tasks, parent, false);
         }
-        TextView nomTache = convertView.findViewById(R.id.NomTache);
+        TextView nomTache = convertView.findViewById(R.id.NomDialog);
         nomTache.setText(tasks.get(position).getNom());
 
         TextView priorite = convertView.findViewById(R.id.Priorite);
