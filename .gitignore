@@ -4,6 +4,15 @@ target/
 !**/src/main/**/target/
 !**/src/test/**/target/
 
+### Maven ###
+.mvn/
+.m2/
+*.jar
+*.war
+*.ear
+*.class
+dependency-reduced-pom.xml
+
 ### STS ###
 .apt_generated
 .classpath
@@ -18,6 +27,7 @@ target/
 *.iws
 *.iml
 *.ipr
+out/
 
 ### NetBeans ###
 /nbproject/private/
@@ -31,3 +41,43 @@ build/
 
 ### VS Code ###
 .vscode/
+.cursor/
+
+### Logs ###
+*.log
+logs/
+*.log.*
+
+### OS ###
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+### Application ###
+application-local.properties
+application-dev.properties
+*.tmp
+*.bak
+*.swp
+*~
+
+### Database ###
+*.db
+*.sqlite
+*.sqlite3
+
+### Node modules (si présent) ###
+node_modules/
+npm-debug.log
+yarn-error.log
+frontend/node_modules/
+frontend/dist/
+frontend/.angular/
+
+### Backend ###
+backend/target/
+backend/.mvn/
