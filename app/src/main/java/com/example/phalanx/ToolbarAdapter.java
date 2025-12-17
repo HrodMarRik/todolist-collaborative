@@ -45,7 +45,7 @@ public class ToolbarAdapter extends BaseAdapter {
         titreList.setText(listInfo.get(position).getTitre());
 
         TextView nomPrenom = convertView.findViewById(R.id.NomPrenom);
-        nomPrenom.setText(user.get(position).getNom()+ " " + user.get(position).getPrenom());
+        nomPrenom.setText(String.format("%s %s", user.get(position).getLastname(), user.get(position).getFirstname()));
 
         return convertView;
     }

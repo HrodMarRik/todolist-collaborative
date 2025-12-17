@@ -17,25 +17,31 @@ import android.widget.TextView;
 import androidx.fragment.app.Fragment;
 import androidx.viewpager2.widget.ViewPager2;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
 
 public class ListFragment extends Fragment {
 
     public ArrayList<Task> tasks;
+    public Users user;
     public ArrayList<Task> tasks02;
     public ArrayList<Column> columns;
-    public ArrayList<Users> user;
     public static ArrayList<String> priorite;
     public ArrayAdapter<String> adapter;
     public TextView titre;
     public EditText titreModif;
-    public ListView listTasks;
     public ViewPager2 viewpager;
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View v= inflater.inflate(R.layout.fragment_list, null);
         viewpager = v.findViewById(R.id.SlideList);
+
+        try {
+            user = UsersRepository.getInstance().getUser(1);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
 
         tasks = new ArrayList<Task>();
         tasks.add(new Task("Manger", "Ne pas oublier de manger son repas!", null, new Date(), "En Cours", "Important"));
@@ -57,12 +63,9 @@ public class ListFragment extends Fragment {
         priorite.add("Important");
         priorite.add("Urgent");
 
-        user= new ArrayList<Users>();
-        user.add(new Users("Kitty", "Hello","h.kitty@gmail.com","test", null,
-                "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSFAGCYo7D-fxye-My-HsVK6jX5q9FwMtot7g&s"));
 
         TextView nomPrenom = v.findViewById(R.id.NomPrenom);
-        nomPrenom.setText(String.format("%s %s", user.get(0).getNom(), user.get(0).getPrenom()));
+        nomPrenom.setText(String.format("%s %s", user.getLastname(), user.getFirstname()));
 
         titre = v.findViewById(R.id.TitreList);
         titreModif = v.findViewById(R.id.TitreListModif);

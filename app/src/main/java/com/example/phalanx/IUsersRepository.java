@@ -1,5 +1,6 @@
 package com.example.phalanx;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 public interface IUsersRepository {
@@ -8,5 +9,5 @@ public interface IUsersRepository {
 
     boolean isExist(Users users);
 
-    ArrayList<Users> getAll();
+    Users getUser(int id) throws IOException;
 }
