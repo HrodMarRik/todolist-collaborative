@@ -104,7 +104,7 @@
         app:layout_constraintTop_toTopOf="@+id/background" />
 
     <TextView
-        android:id="@+id/ColumnName"
+        android:id="@+id/ColumnNameOld"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="10dp"

@@ -15,6 +15,7 @@ import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.TextView;
 import androidx.fragment.app.Fragment;
+import androidx.viewpager2.widget.ViewPager2;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -22,26 +23,39 @@ import java.util.Date;
 public class ListFragment extends Fragment {
 
     public ArrayList<Task> tasks;
+    public ArrayList<Task> tasks02;
+    public ArrayList<Column> columns;
     public ArrayList<Users> user;
     public static ArrayList<String> priorite;
     public ArrayAdapter<String> adapter;
+    public TextView titre;
+    public EditText titreModif;
+    public ListView listTasks;
+    public ViewPager2 viewpager;
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View v= inflater.inflate(R.layout.fragment_list, null);
+        viewpager = v.findViewById(R.id.SlideList);
 
         tasks = new ArrayList<Task>();
         tasks.add(new Task("Manger", "Ne pas oublier de manger son repas!", null, new Date(), "En Cours", "Important"));
         tasks.add(new Task("Dormir", "Ne pas oublier de manger dormir au moins pendant 8h!", null, new Date(), "En Cours", "Important"));
+
+        tasks02 = new ArrayList<Task>();
+        tasks02.add(new Task("Boire", "Ne pas oublier de boire pendant la journée!", null, new Date(), "En Cours", "Important"));
+
+        columns = new ArrayList<>();
+        columns.add(new Column("Colonne 01", tasks));
+        columns.add(new Column("Colonne 02", tasks02));
+
+        ListSlideAdapter listSlideAdapter = new ListSlideAdapter(columns);
+        viewpager.setAdapter(listSlideAdapter);
 
         priorite = new ArrayList<String>();
         priorite.add("Low");
         priorite.add("Normal");
         priorite.add("Important");
         priorite.add("Urgent");
-
-        ListView listTasks = v.findViewById(R.id.ListTasks);
-        TaskAdapter adapterTask = new TaskAdapter(getContext(), tasks);
-        listTasks.setAdapter(adapterTask);
 
         user= new ArrayList<Users>();
         user.add(new Users("Kitty", "Hello","h.kitty@gmail.com","test", null,
@@ -50,28 +64,23 @@ public class ListFragment extends Fragment {
         TextView nomPrenom = v.findViewById(R.id.NomPrenom);
         nomPrenom.setText(String.format("%s %s", user.get(0).getNom(), user.get(0).getPrenom()));
 
+        titre = v.findViewById(R.id.TitreList);
+        titreModif = v.findViewById(R.id.TitreListModif);
+
         Button btn = v.findViewById(R.id.btn_modifierlist);
         btn.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v){
-                TextView titre = v.findViewById(R.id.TitreList);
                 titre.setVisibility(View.INVISIBLE);
-
-                EditText titreModif = v.findViewById(R.id.TitreListModif);
                 titreModif.setVisibility(View.VISIBLE);
             }
         });
 
-        EditText titreModif = v.findViewById(R.id.TitreListModif);
         titreModif.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
             public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
                 if ((event != null && (event.getKeyCode() == KeyEvent.KEYCODE_ENTER)) ||
                         (actionId == EditorInfo.IME_ACTION_DONE) || (actionId == EditorInfo.IME_ACTION_GO)) {
-                    EditText titreModif = v.findViewById(R.id.TitreListModif);
-                    TextView titre = v.findViewById(R.id.TitreList);
-
                     titre.setText(titreModif.getText().toString());
-
                     titreModif.setVisibility(View.INVISIBLE);
                     titre.setVisibility(View.VISIBLE);
                     return true;
@@ -85,7 +94,6 @@ public class ListFragment extends Fragment {
         btnAdd.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v){
                 ajouterTask();
-
             }
         });
         return v;
@@ -111,6 +119,12 @@ public class ListFragment extends Fragment {
         Button btnValider = dialog.findViewById(R.id.buttonValider);
         btnValider.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v){
+                EditText titreModif = dialog.findViewById(R.id.NomDialogModif);
+                EditText descriptionModif = dialog.findViewById(R.id.DescriptionDialogModif);
+                columns.get(viewpager.getCurrentItem()).tasks.add(new Task(titreModif.getText().toString(), descriptionModif.getText().toString(),
+                        null, new Date(), "En Cours", prio.getText().toString()));
+                ListSlideAdapter listSlideAdapter = new ListSlideAdapter(columns);
+                viewpager.setAdapter(listSlideAdapter);
 
                 dialog.dismiss();
             }

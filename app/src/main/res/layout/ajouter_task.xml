@@ -27,7 +27,7 @@
     <AutoCompleteTextView
         android:id="@+id/PrioriteOptions"
         android:layout_width="200dp"
-        android:layout_height="40dp"
+        android:layout_height="wrap_content"
         android:inputType="none"
         android:hint="Priorité"
         android:background="@drawable/textbox"
@@ -35,27 +35,27 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <EditText
-        android:id="@+id/NomDialog"
-        android:layout_width="wrap_content"
+        android:id="@+id/NomDialogModif"
+        android:layout_width="350dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
         android:layout_marginTop="10dp"
         android:fontFamily="@font/montserrat_regular"
-        android:text="Titre Task"
+        android:hint="Ecrire le titre de la tâche"
         android:textColor="@color/black"
         android:textSize="16sp"
         android:inputType="text"/>
 
     <EditText
-        android:id="@+id/Description"
+        android:id="@+id/DescriptionDialogModif"
         android:layout_width="350dp"
         android:layout_height="wrap_content"
         android:inputType="textMultiLine"
         android:layout_marginStart="20dp"
         android:layout_marginTop="10dp"
         android:fontFamily="@font/montserrat_regular"
-        android:text="Contenu contenu contenu contenu contenu contenu contenu contenu contenu contenu contenu"
-        android:textSize="14sp" />
+        android:hint="Ecrire la description de la tâche."
+        android:textSize="16sp" />
 
 </LinearLayout>
 

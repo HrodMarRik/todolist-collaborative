@@ -6,7 +6,7 @@ public class Users {
     private String email;
     private String password;
     private String role;
-    private String Avatar;
+    private String avatar;
 
     public Users(){}
 
@@ -16,7 +16,7 @@ public class Users {
         this.email = email;
         this.password = password;
         this.role = role;
-        Avatar = avatar;
+        this.avatar = avatar;
     }
 
     public String getNom() {
@@ -60,10 +60,10 @@ public class Users {
     }
 
     public String getAvatar() {
-        return Avatar;
+        return avatar;
     }
 
     public void setAvatar(String avatar) {
-        Avatar = avatar;
+        this.avatar = avatar;
     }
 }
