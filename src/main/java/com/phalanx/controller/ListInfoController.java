@@ -33,13 +33,12 @@ public class ListInfoController {
         return repository.findByTitleContaining(searchTerm);
     }
 
-    /* 
     @PostMapping("/list")
     public ListInfo create(@RequestBody Map<String, String> body){
         String title = body.get("title");
         String listType = body.get("listType");
         String listScope = body.get("listScope");
-        return repository.save(new ListInfo(title, listType, listScope));
+        return repository.save(new ListInfo(title, listType, listScope, null, null, null));
     }
 
     @PutMapping("/list/{id}")
@@ -47,17 +46,16 @@ public class ListInfoController {
         int listId = Integer.parseInt(id);
         ListInfo listInfo = repository.findById(listId).get();
         listInfo.setTitle(body.get("title"));
-        listInfo.setListType(body.get("listType"));
-        listInfo.setListScope(body.get("listScope"));
+        listInfo.setListtype(body.get("listType"));
+        listInfo.setListscope(body.get("listScope"));
         return repository.save(listInfo);
     }
 
-    @DeleteMapping("list/{id}")
+    @DeleteMapping("/list/{id}")
     public boolean delete(@PathVariable String id){
         int listId = Integer.parseInt(id);
         repository.deleteById(listId);
         return true;
     }
-*/
 
 }

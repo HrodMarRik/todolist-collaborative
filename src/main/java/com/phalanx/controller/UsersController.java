@@ -7,6 +7,7 @@ import com.phalanx.model.Users;
 import com.phalanx.service.UsersRepository;
 
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("api")
@@ -26,7 +27,6 @@ public class UsersController {
         return repository.findById(userId).get();
     }
 
-    /* 
     @PostMapping("/user")
     public Users create(@RequestBody Map<String, String> body){
         String lastName = body.get("lastName");
@@ -35,15 +35,15 @@ public class UsersController {
         String password = body.get("password");
         String role = body.get("role");
         String avatar = body.get("avatar");
-        return repository.save(new Users(lastName, firstName, email, password, role, avatar));
+        return repository.save(new Users(lastName, firstName, email, password, role, avatar, null, null, null, null));
     }
 
     @PutMapping("/user/{id}")
     public Users update(@PathVariable String id, @RequestBody Map<String, String> body){
         int userId = Integer.parseInt(id);
         Users user = repository.findById(userId).get();
-        user.setLastName(body.get("lastName"));
-        user.setFirstName(body.get("firstName"));
+        user.setLastname(body.get("lastName"));
+        user.setFirstname(body.get("firstName"));
         user.setEmail(body.get("email"));
         user.setPassword(body.get("password"));
         user.setRole(body.get("role"));
@@ -51,11 +51,10 @@ public class UsersController {
         return repository.save(user);
     }
 
-    @DeleteMapping("user/{id}")
+    @DeleteMapping("/user/{id}")
     public boolean delete(@PathVariable String id){
-        int listId = Integer.parseInt(id);
-        repository.deleteById(listId);
+        int userId = Integer.parseInt(id);
+        repository.deleteById(userId);
         return true;
     }
-        */
 }

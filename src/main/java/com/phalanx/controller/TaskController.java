@@ -4,7 +4,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import com.phalanx.model.Task;
+import com.phalanx.model.ListColumn;
+import com.phalanx.model.Users;
 import com.phalanx.service.TaskRepository;
+import com.phalanx.service.ListColumnRepository;
+import com.phalanx.service.UsersRepository;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -17,6 +21,12 @@ public class TaskController {
    
     @Autowired
     private TaskRepository repository;
+    
+    @Autowired
+    private ListColumnRepository listColumnRepository;
+    
+    @Autowired
+    private UsersRepository usersRepository;
 
     DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
 
@@ -31,7 +41,6 @@ public class TaskController {
         return repository.findById(taskId).get();
     }
 
-    /* 
     @PostMapping("/task")
     public Task create(@RequestBody Map<String, String> body){
         String name = body.get("name");
@@ -40,9 +49,11 @@ public class TaskController {
         LocalDate creationdate = LocalDate.parse(body.get("creationdate"), formatter);
         String status = body.get("status");
         String priority = body.get("priority");
-        int id_column = Integer.parseInt(body.get("id_column"));
-        int id_users = Integer.parseInt(body.get("id_users"));
-        return repository.save(new Task(name, description, enddate, creationdate, status, priority, id_column, id_users));
+        int idColumn = Integer.parseInt(body.get("id_column"));
+        int idUsers = Integer.parseInt(body.get("id_users"));
+        ListColumn listColumn = listColumnRepository.findById(idColumn).get();
+        Users users = usersRepository.findById(idUsers).get();
+        return repository.save(new Task(name, description, enddate, creationdate, status, priority, listColumn, users, null));
     }
 
     @PutMapping("/task/{id}")
@@ -55,16 +66,19 @@ public class TaskController {
         task.setCreationdate( LocalDate.parse(body.get("creationdate"), formatter) );
         task.setStatus(body.get("status"));
         task.setPriority(body.get("priority"));
-        task.setId_column( Integer.parseInt(body.get("id_column")) );
-        task.setId_users( Integer.parseInt(body.get("id_users")) );
+        int idColumn = Integer.parseInt(body.get("id_column"));
+        int idUsers = Integer.parseInt(body.get("id_users"));
+        ListColumn listColumn = listColumnRepository.findById(idColumn).get();
+        Users users = usersRepository.findById(idUsers).get();
+        task.setListColumn(listColumn);
+        task.setUsers(users);
         return repository.save(task);
     }
 
-    @DeleteMapping("task/{id}")
+    @DeleteMapping("/task/{id}")
     public boolean delete(@PathVariable String id){
         int taskId = Integer.parseInt(id);
         repository.deleteById(taskId);
         return true;
     }
-    */
 }

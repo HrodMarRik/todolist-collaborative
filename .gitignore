@@ -1,5 +1,7 @@
 HELP.md
-target/
+
+# Java / Maven
+**/target/
 .mvn/wrapper/maven-wrapper.jar
 !**/src/main/**/target/
 !**/src/test/**/target/
@@ -35,12 +37,13 @@ out/
 /dist/
 /nbdist/
 /.nb-gradle/
-build/
+**/build/
 !**/src/main/**/build/
 !**/src/test/**/build/
 
 ### VS Code ###
 .vscode/
+<<<<<<< HEAD
 .cursor/
 
 ### Logs ###
@@ -81,3 +84,15 @@ frontend/.angular/
 ### Backend ###
 backend/target/
 backend/.mvn/
+=======
+
+# Node / Angular (frontend)
+frontend/node_modules/
+frontend/dist/
+frontend/.angular/
+frontend/.env.local
+
+# OS junk
+.DS_Store
+Thumbs.db
+>>>>>>> dev

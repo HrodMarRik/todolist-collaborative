@@ -41,7 +41,7 @@ public class ListRolesController {
         return repository.save(ListRoles);
     }
 
-    @DeleteMapping("role/{id}")
+    @DeleteMapping("/role/{id}")
     public boolean delete(@PathVariable String id){
         int listId = Integer.parseInt(id);
         repository.deleteById(listId);
