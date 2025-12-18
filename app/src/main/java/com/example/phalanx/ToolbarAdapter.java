@@ -42,7 +42,7 @@ public class ToolbarAdapter extends BaseAdapter {
             convertView = LayoutInflater.from(context).inflate(R.layout.toolbar, parent, false);
         }
         TextView titreList = convertView.findViewById(R.id.TitreList);
-        titreList.setText(listInfo.get(position).getTitre());
+        titreList.setText(listInfo.get(position).getTitle());
 
         TextView nomPrenom = convertView.findViewById(R.id.NomPrenom);
         nomPrenom.setText(String.format("%s %s", user.get(position).getLastname(), user.get(position).getFirstname()));

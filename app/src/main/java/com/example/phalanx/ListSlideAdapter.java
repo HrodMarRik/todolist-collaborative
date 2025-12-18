@@ -13,9 +13,9 @@ import java.util.ArrayList;
 
 public class ListSlideAdapter extends RecyclerView.Adapter<ListSlideAdapter.ViewHolder>{
 
-    public ArrayList<Column> ColumnList;
+    public ArrayList<ListColumn> ColumnList;
 
-    public ListSlideAdapter(ArrayList<Column> column) {
+    public ListSlideAdapter(ArrayList<ListColumn> column) {
         ColumnList = column;
     }
 
@@ -26,17 +26,27 @@ public class ListSlideAdapter extends RecyclerView.Adapter<ListSlideAdapter.View
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        Column column = ColumnList.get(position);
+        ListColumn column = ColumnList.get(position);
 
-        TaskAdapter adapterTask = new TaskAdapter(holder.itemView.getContext(), column.tasks);
+        ArrayList<Task> tasks = new ArrayList<>();
+        if(column.tasks !=null){
+            tasks = column.tasks;
+        } else {
+            tasks = null;
+        }
+        TaskAdapter adapterTask = new TaskAdapter(holder.itemView.getContext(), tasks);
         holder.listTasks.setAdapter(adapterTask);
-        holder.columnName.setText(column.titre);
+        holder.columnName.setText(column.title);
 
     }
 
     @Override
     public int getItemCount() {
-        return ColumnList.size();
+        if (ColumnList!=null){
+            return ColumnList.size();
+        } else {
+            return 0;
+        }
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder{

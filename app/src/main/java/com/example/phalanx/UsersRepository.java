@@ -1,18 +1,14 @@
 package com.example.phalanx;
 
-import androidx.annotation.NonNull;
-
-import com.google.gson.Gson;
+import android.content.SharedPreferences;
 import java.io.IOException;
-import java.util.ArrayList;
 
 import okhttp3.*;
 
-public class UsersRepository implements IUsersRepository{
+public class UsersRepository{
 
     private static UsersRepository instance;
-    static String baseUrl = "https://localhost:8080/api";
-    Users result;
+    static String baseUrl = "http://10.0.2.2:8080/api";
 
     public static UsersRepository getInstance(){
         if(instance==null){
@@ -20,18 +16,8 @@ public class UsersRepository implements IUsersRepository{
         }
         return instance;
     }
-    @Override
-    public boolean remove(Users users) {
-        return false;
-    }
 
-    @Override
-    public boolean isExist(Users users) {
-        return false;
-    }
-
-    @Override
-    public Users getUser(int id) throws IOException{
+    public void getUser(int id, SharedPreferences result) throws IOException{
         OkHttpClient client = new OkHttpClient();
 
         Request request = new Request.Builder()
@@ -47,11 +33,13 @@ public class UsersRepository implements IUsersRepository{
 
                     @Override
                     public void onResponse(Call call, final Response response) throws IOException {
-                        result = new Gson().fromJson(response.body().string(), Users.class);
+                        if(response.isSuccessful()) {
+                            String res = response.body().string();
+                            SharedPreferences.Editor editor = result.edit();
+                            editor.putString("user", res);
+                            editor.apply();
+                        }
                     }
                 });
-
-            return result!=null ? result : new Users("", "", "","","","", new ArrayList<ListInfo>(),
-                    new ArrayList<ListRoles>(), new ArrayList<ListComment>(), new ArrayList<Task>());
     }
 }
