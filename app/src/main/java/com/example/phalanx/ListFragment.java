@@ -15,6 +15,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import androidx.fragment.app.Fragment;
 import androidx.viewpager2.widget.ViewPager2;
 
@@ -29,9 +31,8 @@ import okhttp3.RequestBody;
 
 public class ListFragment extends Fragment {
 
-    public ArrayList<Task> tasks;
+    public static Integer userId;
     public Users user;
-    public ArrayList<Task> tasks02;
     public ArrayList<ListInfo> listInfo;
     public ArrayList<ListColumn> columns;
     public static ArrayList<String> priorite;
@@ -39,9 +40,8 @@ public class ListFragment extends Fragment {
     public TextView titre;
     public EditText titreModif;
     public ViewPager2 viewpager;
-    public TextView userView;
     public SharedPreferences sharedpreferences;
-    public TasksRepository tasksRepository = new TasksRepository();
+    public TasksRepository tasksRepository = TasksRepository.getInstance();
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View v= inflater.inflate(R.layout.fragment_list, null);
@@ -57,15 +57,7 @@ public class ListFragment extends Fragment {
         Gson gson = new Gson();
         user = gson.fromJson(sharedpreferences.getString("user", ""), Users.class);
 
-        tasks = new ArrayList<Task>();
-        tasks.add(new Task("Manger", "Ne pas oublier de manger son repas!", null, new Date(), "En Cours", "Important"));
-        tasks.add(new Task("Dormir", "Ne pas oublier de manger dormir au moins pendant 8h!", null, new Date(), "En Cours", "Important"));
-
-        tasks02 = new ArrayList<Task>();
-        tasks02.add(new Task("Boire", "Ne pas oublier de boire pendant la journée!", null, new Date(), "En Cours", "Important"));
-
         listInfo = user.getListgroup();
-        Log.d("result", listInfo.get(0).getListColumns().get(0).getId_column().toString());
         columns = listInfo.get(0).getListColumns();
 
         ListSlideAdapter listSlideAdapter = new ListSlideAdapter(columns);
@@ -82,6 +74,7 @@ public class ListFragment extends Fragment {
         nomPrenom.setText(String.format("%s %s", user.getLastname(), user.getFirstname()));
 
         titre = v.findViewById(R.id.TitreList);
+        titre.setText(listInfo.get(0).getTitle());
         titreModif = v.findViewById(R.id.TitreListModif);
 
         Button btn = v.findViewById(R.id.btn_modifierlist);
@@ -116,6 +109,10 @@ public class ListFragment extends Fragment {
         return v;
     }
 
+    public static void setId(Integer id){
+        userId = id;
+    }
+
     private void ajouterTask(){
         Dialog dialog = new Dialog(getContext());
         dialog.setContentView(R.layout.ajouter_task);
@@ -146,22 +143,16 @@ public class ListFragment extends Fragment {
                         null, new Date(), "En Cours", prio.getText().toString()));
                 ListSlideAdapter listSlideAdapter = new ListSlideAdapter(columns);
                 viewpager.setAdapter(listSlideAdapter);
-
-                RequestBody formBody = new FormBody.Builder()
-                        .add("name", titreModif.getText().toString())
-                        .add("description", descriptionModif.getText().toString())
-                        .add("enddate", "")
-                        .add("creationdate", new Date().toString())
-                        .add("status", "En Cours")
-                        .add("priority", prio.getText().toString())
-                        .add("idColumn", columns.get(viewpager.getCurrentItem()).getId_column().toString())
-                        .add("idUsers", "1")
-                        .build();
-                try {
-                    tasksRepository.postTasks(formBody);
-                } catch (IOException e) {
-                    throw new RuntimeException(e);
-                }
+                tasksRepository.postTask(titreModif.getText().toString(), descriptionModif.getText().toString(), null,
+                        new Date(),"En Cours",prio.getText().toString(),
+                        columns.get(viewpager.getCurrentItem()).getId_column(), 1, success -> {
+                    requireActivity().runOnUiThread(() -> {
+                        if (success) {
+                        } else {
+                            Toast.makeText(getContext(), "Erreur", Toast.LENGTH_SHORT).show();
+                        }
+                    });
+                });
                 dialog.dismiss();
             }
         });

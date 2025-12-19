@@ -1,15 +1,10 @@
 package com.example.phalanx;
 
 import org.json.JSONObject;
-
-import java.io.IOException;
-import okhttp3.Call;
-import okhttp3.Callback;
-import okhttp3.MediaType;
-import okhttp3.OkHttpClient;
-import okhttp3.Request;
-import okhttp3.RequestBody;
-import okhttp3.Response;
+import java.io.OutputStream;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.util.Date;
 
 public class TasksRepository {
 
@@ -23,24 +18,45 @@ public class TasksRepository {
         return instance;
     }
 
-    public void postTasks(RequestBody body) throws IOException {
-        OkHttpClient client = new OkHttpClient();
-
-        Request request = new Request.Builder()
-                .url(baseUrl + "/task")
-                .post(body)
-                .build();
-
-        client.newCall(request).enqueue(new Callback() {
-                    @Override
-                    public void onFailure(final Call call, IOException e) {
-                        e.printStackTrace();
-                    }
-
-                    @Override
-                    public void onResponse(Call call, final Response response) throws IOException {
-
-                    }
-                });
+    public interface Callback {
+        void onResult(boolean success);
     }
+
+    public void postTask(String nom, String description, Date dateFin, Date dateCreation, String status, String priorite,
+                         Integer idColumn, Integer idUsers, TasksRepository.Callback callback) {
+        new Thread(() -> {
+            try {
+                URL url = new URL(baseUrl + "/task");
+                HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+
+                conn.setRequestMethod("POST");
+                conn.setRequestProperty("Content-Type", "application/json");
+                conn.setDoOutput(true);
+
+                JSONObject json = new JSONObject();
+                json.put("nom", nom);
+                json.put("description", description);
+                json.put("dateFin", dateFin);
+                json.put("daeteCreation", dateCreation);
+                json.put("status", status);
+                json.put("priorite", priorite);
+                json.put("idColumn", idColumn);
+                json.put("idUsers", idUsers);
+
+                OutputStream os = conn.getOutputStream();
+                os.write(json.toString().getBytes());
+                os.flush();
+                os.close();
+
+                int code = conn.getResponseCode();
+                callback.onResult(code == 200);
+
+                conn.disconnect();
+            } catch (Exception e) {
+                e.printStackTrace();
+                callback.onResult(false);
+            }
+        }).start();
+    }
+
 }

@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/gradient_background_redorange">
+
+    <!-- LOGO -->
+    <ImageView
+        android:id="@+id/imageViewRegister"
+        android:layout_width="160dp"
+        android:layout_height="144dp"
+        android:layout_marginTop="80dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:srcCompat="@drawable/phalanx_white" />
+
+    <!-- TITRE -->
+    <TextView
+        android:id="@+id/textViewRegisterTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/montserrat_regular"
+        android:text="Inscription"
+        android:textSize="48sp"
+        android:textColor="@color/white"
+        app:layout_constraintTop_toBottomOf="@id/imageViewRegister"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <!-- PRENOM -->
+    <EditText
+        android:id="@+id/editTextEmail"
+        android:layout_width="320dp"
+        android:layout_height="52dp"
+        android:layout_marginTop="30dp"
+        android:background="@drawable/textbox"
+        android:backgroundTint="@color/white"
+        android:hint="Email"
+        android:padding="10dp"
+        android:paddingStart="20dp"
+        android:textColor="@color/black"
+        android:textColorHint="@color/material_dynamic_neutral30"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/textViewRegisterTitle" />
+
+    <!-- NOM -->
+    <EditText
+        android:id="@+id/editTextPassword"
+        android:layout_width="320dp"
+        android:layout_height="52dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/textbox"
+        android:backgroundTint="#FFFFFF"
+        android:hint="Mot de passe"
+        android:paddingStart="20dp"
+        android:textColor="@color/black"
+        android:textColorHint="@color/material_dynamic_neutral30"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/editTextEmail" />
+
+    <!-- EMAIL -->
+    <EditText
+        android:id="@+id/editTextFirstName"
+        android:layout_width="320dp"
+        android:layout_height="52dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/textbox"
+        android:backgroundTint="#FFFFFF"
+        android:hint="Prénom"
+        android:inputType="textEmailAddress"
+        android:paddingStart="20dp"
+        android:textColor="@color/black"
+        android:textColorHint="@color/material_dynamic_neutral30"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/editTextPassword" />
+
+
+
+    <!-- PASSWORD -->
+    <EditText
+        android:id="@+id/editTextLastName"
+        android:layout_width="320dp"
+        android:layout_height="52dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/textbox"
+        android:backgroundTint="#FFFFFF"
+        android:hint="Nom"
+        android:inputType="textPassword"
+        android:paddingStart="20dp"
+        android:textColor="@color/black"
+        android:textColorHint="@color/material_dynamic_neutral30"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/editTextFirstName" />
+
+
+
+    <!-- BOUTON -->
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/buttonRegister"
+        android:layout_width="320dp"
+        android:layout_height="52dp"
+        android:layout_marginTop="40dp"
+        android:text="S'inscrire"
+        android:fontFamily="@font/montserrat_regular"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        android:textColor="@color/white"
+        android:textColorLink="@color/orange"
+        android:textSize="24sp"
+        android:background="@drawable/buttongradient"
+        app:layout_constraintTop_toBottomOf="@id/editTextLastName"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
